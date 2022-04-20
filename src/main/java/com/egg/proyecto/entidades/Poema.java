@@ -5,11 +5,11 @@
  */
 package com.egg.proyecto.entidades;
 
-/**
- *
- * @author Usuario
- */
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 public class Poema {
+    
     private Usuario autor;
     
     private String titulo;
