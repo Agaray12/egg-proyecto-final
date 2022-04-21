@@ -1,31 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.egg.proyecto.entidades;
 
+import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.GenericGenerator;
 
+@Entity
+@Table(name = "poemas")
 public class Poema {
     
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    @OneToOne
     private Usuario autor;
-    
     private String titulo;
-    
     private String cuerpo;
-    
-    private String fecha;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
 
     public Poema() {
     }
 
-    public Poema(Usuario autor, String titulo, String cuerpo, String fecha) {
+    public Poema(String id, Usuario autor, String titulo, String cuerpo, Date fecha) {
+        this.id = id;
         this.autor = autor;
         this.titulo = titulo;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Usuario getAutor() {
@@ -52,13 +68,16 @@ public class Poema {
         this.cuerpo = cuerpo;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Poema{" + "id=" + id + ", autor=" + autor + ", titulo=" + titulo + ", cuerpo=" + cuerpo + ", fecha=" + fecha + '}';
+    }  
 }
