@@ -18,7 +18,7 @@ public class Usuario {
     private String id; 
     private String email;
     private String contrasenia;
-    private String alias;
+    private String nombreUsuario;
     
     @OneToMany
     private List<Poema> poemas;
@@ -26,11 +26,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String id, String email, String contrasenia, String alias, List<Poema> poemas) {
+    public Usuario(String id, String email, String contrasenia, String nombreUsuario, List<Poema> poemas) {
         this.id = id;
         this.email = email;
         this.contrasenia = contrasenia;
-        this.alias = alias;
+        this.nombreUsuario = nombreUsuario;
         this.poemas = poemas;
     }
 
@@ -58,12 +58,12 @@ public class Usuario {
         this.contrasenia = contraseña;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public List<Poema> getPoemas() {
@@ -76,6 +76,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", email=" + email + ", contrasenia=" + contrasenia + ", alias=" + alias + ", poemas=" + poemas + '}';
+        return "Usuario{" + "id=" + id + ", email=" + email + ", contrasenia=" + contrasenia + ", nombre de usuario=" + nombreUsuario + ", poemas=" + poemas + '}';
     }
 }
