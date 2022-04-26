@@ -1,28 +1,42 @@
 package com.egg.proyecto.servicios;
 
 import com.egg.proyecto.entidades.Usuario;
+import com.egg.proyecto.enums.Role;
 import com.egg.proyecto.repositorios.UsuarioRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
-public class UsuarioServicio {
+public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-
+    
     public List<Usuario>findAll(){
         return usuarioRepositorio.findAll();
     }
-
+    
     public Usuario crearUsuario (String email, String contrasenia1, String contrasenia2, String nombreUsuario) throws Exception{
         validator(email,contrasenia1, contrasenia2, nombreUsuario);
         Usuario usuario=new Usuario();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         usuario.setEmail(email);
-        usuario.setContrasenia(contrasenia1);
+        usuario.setContrasenia(encoder.encode(contrasenia1));
         usuario.setNombreUsuario(nombreUsuario);
+        usuario.setRole(Role.USER);
         return usuarioRepositorio.save(usuario);
     }
 
@@ -31,15 +45,16 @@ public class UsuarioServicio {
         if (respuesta.isPresent()) {
             updateValidator(email, contrasenia, nombreUsuario);
             Usuario usuario = respuesta.get();
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             usuario.setEmail(email);
-            usuario.setContrasenia(contrasenia);
+            usuario.setContrasenia(encoder.encode(contrasenia));
             usuario.setNombreUsuario(nombreUsuario);
             return usuarioRepositorio.save(usuario);
-    }else{
+        }else{
             throw new Exception ("No existe ese usuario");
         }
     }
-
+    
     public void eliminarUsuario(String id, String email, String contrasenia, String alias){
         usuarioRepositorio.deleteById(id);
     }
@@ -82,6 +97,27 @@ public class UsuarioServicio {
         }
         if(nombreUsuario == null || nombreUsuario.isEmpty()){
             throw new Exception("Ingrese un nombre de usuario válido");
+        }
+    }
+    
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = buscarUsuarioPorEmail(email);
+        if (usuario != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRole());
+            permisos.add(p1);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+            
+            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
+            return user;
+
+        } else {
+            return null;
         }
     }
 } 
