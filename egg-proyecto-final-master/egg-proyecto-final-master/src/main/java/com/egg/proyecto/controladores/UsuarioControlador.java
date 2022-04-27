@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("/login")
 public class UsuarioControlador {
-    @Autowired 
+@Autowired 
     private UsuarioServicio usuarioServicio;
     
     @GetMapping("/login")
@@ -32,5 +32,4 @@ public class UsuarioControlador {
         }
         
     }
-
 }
