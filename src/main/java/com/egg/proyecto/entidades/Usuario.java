@@ -1,7 +1,10 @@
 package com.egg.proyecto.entidades;
 
+import com.egg.proyecto.enums.Role;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -19,6 +22,9 @@ public class Usuario {
     private String email;
     private String contrasenia;
     private String nombreUsuario;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
     @OneToMany
     private List<Poema> poemas;
@@ -74,8 +80,18 @@ public class Usuario {
         this.poemas = poemas;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", email=" + email + ", contrasenia=" + contrasenia + ", nombre de usuario=" + nombreUsuario + ", poemas=" + poemas + '}';
+        return "Usuario{" + "id=" + id + ", email=" + email + ", contrasenia=" + contrasenia + ", nombreUsuario=" + nombreUsuario + ", role=" + role + ", poemas=" + poemas + '}';
     }
+
+    
 }
