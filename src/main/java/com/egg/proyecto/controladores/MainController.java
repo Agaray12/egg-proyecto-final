@@ -28,4 +28,9 @@ public class MainController {
         }
         return "login";
     }
+    
+    @GetMapping("/nosotros")
+    public String nosotros(){
+        return "nosotros";
+    }
 }
