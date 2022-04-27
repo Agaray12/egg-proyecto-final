@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -12,9 +11,9 @@
         <h1>PoetApp</h1>
         <div>
             <ul>
-                <li><a href="/login">Regristrarse</a></li>
-                <li><a href="/profile">Poemas</a></li>
-                <li><a href="/nosotros">Nosotros</a></li>
+                <li><a th:href="@{/usuario/registro}">Regristrarse</a></li>
+                <li><a th:href="@{/profile}">Poemas</a></li>
+                <li><a th:href="@{/nosotros}">Nosotros</a></li>
             </ul>
         </div>
     </header>

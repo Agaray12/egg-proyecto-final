@@ -40,14 +40,14 @@ public class UsuarioServicio implements UserDetailsService{
         return usuarioRepositorio.save(usuario);
     }
 
-    public Usuario modificarUsuario(String id, String email, String contrasenia, String nombreUsuario) throws Exception {
+    public Usuario modificarUsuario(String id, String email, String contrasenia1, String contrasenia2, String nombreUsuario) throws Exception {
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
-            updateValidator(email, contrasenia, nombreUsuario);
+            updateValidator(email, contrasenia1, contrasenia2, nombreUsuario);
             Usuario usuario = respuesta.get();
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             usuario.setEmail(email);
-            usuario.setContrasenia(encoder.encode(contrasenia));
+            usuario.setContrasenia(encoder.encode(contrasenia1));
             usuario.setNombreUsuario(nombreUsuario);
             return usuarioRepositorio.save(usuario);
         }else{
@@ -77,6 +77,9 @@ public class UsuarioServicio implements UserDetailsService{
         if (contrasenia1 == null || contrasenia1.isEmpty()) {
             throw new Exception("Ingrese una contraseña válida");
         }
+        if (contrasenia2 == null || contrasenia2.isEmpty()){
+            throw new Exception("Ingrese una contraseña válida");
+        }
         if (!(contrasenia1.equals(contrasenia2))){
             throw new Exception("Las contraseñas no coinciden");
         }
@@ -88,12 +91,18 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }
     
-    public void updateValidator(String email, String contrasenia, String nombreUsuario) throws Exception{
+    public void updateValidator(String email, String contrasenia1, String contrasenia2, String nombreUsuario) throws Exception{
         if(email == null || email.isEmpty()){
             throw new Exception("Ingrese un email válido");
         }
-        if(contrasenia == null || contrasenia.isEmpty()){
+        if(contrasenia1 == null || contrasenia1.isEmpty()){
             throw new Exception("Ingrese una contraseña válida");
+        }
+        if(contrasenia2 == null || contrasenia2.isEmpty()){
+            throw new Exception("Ingrese una contraseña válida");
+        }
+        if(!(contrasenia1.equals(contrasenia2))){
+            throw new Exception("Las contraseñas no coinciden");
         }
         if(nombreUsuario == null || nombreUsuario.isEmpty()){
             throw new Exception("Ingrese un nombre de usuario válido");
