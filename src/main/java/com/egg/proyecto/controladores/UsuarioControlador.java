@@ -2,12 +2,13 @@ package com.egg.proyecto.controladores;
 
 import com.egg.proyecto.entidades.Usuario;
 import com.egg.proyecto.servicios.UsuarioServicio;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,11 +30,11 @@ public class UsuarioControlador {
         try {
           usuarioServicio.crearUsuario(email, contrasenia1, contrasenia2, nombreUsuario);
           mod.put("Exito", "Usuario registrado con éxito!");
-          return "registro";
         }catch (Exception e){
             mod.put("Error", "Verifique los datos ingresados");
             return "registro";
         }
+        return "redirect:/login";
     }
     
     @GetMapping("/editar")
@@ -57,5 +58,20 @@ public class UsuarioControlador {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/usuario/editar";
+    }
+    
+    @GetMapping("/lista")
+    public String listar(ModelMap model){
+        List<Usuario> usuarios = usuarioServicio.findAll();
+        model.addAttribute("usuarios", usuarios);
+        return "lista_perfiles";
+    }
+    
+    @GetMapping("/{nombre}")
+    public String profile(ModelMap model, @PathVariable String nombre){
+        Usuario u2 = usuarioServicio.buscarUsuarioPorNombre(nombre);
+        
+        model.put("usuario", u2);
+        return "profile";
     }
 }
