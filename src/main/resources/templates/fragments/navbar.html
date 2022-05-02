@@ -35,17 +35,17 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a th:href="@{/}" class="nav-link text-white">
             <svg class="bi d-block mx-auto mb-1" width="24" height="22"><use xlink:href="#home"/></svg>
-            Home
+            Inicio
           </a></li>
           <li><a th:href="@{/usuario/lista}" class="nav-link text-white">
             <svg class="bi d-block mx-auto mb-1" width="24" height="22"><use xlink:href="#grid"/></svg>
-            Features
+            Usuarios
           </a></li>
           <li><a href="#" class="nav-link px-2 text-white"><svg class="bi d-block mx-auto mb-1" width="24" height="22"><use xlink:href="#question"/></svg>
             FAQs
           </a></li>
           <li><a href="#" class="nav-link px-2 text-white"><svg class="bi d-block mx-auto mb-1" width="24" height="22"><use xlink:href="#chat-heart"/></svg>
-            About
+            Sobre nosotros
           </a></li>
         </ul>
 
@@ -54,8 +54,8 @@
         </form>
 
         <div class="text-end" sec:authorize="!hasAnyRole('ADMIN','USER')">
-          <a th:href="@{/login}" type="button" class="btn btn-outline-light me-2">Iniciar sesion</a>
-          <a th:href="@{/usuario/registro}" type="button" class="btn btn-warning">Registrate</a>
+          <a th:href="@{/login}" type="button" class="btn btn-outline-light me-2">Iniciar sesión</a>
+          <a th:href="@{/usuario/registro}" type="button" class="btn btn-warning">¡Registrate!</a>
         </div>
 
         <div class="dropdown text-end" sec:authorize="isAuthenticated()">
@@ -63,11 +63,11 @@
             <svg class="bi" width="32" height="32"><use xlink:href="#people-circle"/></svg>
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" th:href="@{/profile}">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Nuevo poema...</a></li>
+            <li><a class="dropdown-item" href="#">Opciones</a></li>
+            <li><a class="dropdown-item" th:href="@{/profile}">Perfil</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" th:href="@{/logout}">Sign out</a></li>
+            <li><a class="dropdown-item" th:href="@{/logout}">Cerrar sesión</a></li>
           </ul>
         </div>
       </div>
