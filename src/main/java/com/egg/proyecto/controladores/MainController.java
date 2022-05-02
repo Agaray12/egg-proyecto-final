@@ -20,6 +20,7 @@ public class MainController {
         }
         return "index";
     }
+    
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model){
         if(error != null){
