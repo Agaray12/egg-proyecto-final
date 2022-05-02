@@ -33,4 +33,10 @@ public class MainController {
     public String nosotros(){
         return "nosotros";
     }
+    
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
+    
 }
