@@ -1,6 +1,7 @@
 package com.egg.proyecto.controladores;
 
 import com.egg.proyecto.entidades.Poema;
+import com.egg.proyecto.entidades.Usuario;
 import com.egg.proyecto.servicios.PoemaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,14 @@ public class PoemaControlador {
     }
     
     @PostMapping("/guardarPoema") //action = "localhost8080/guardarPoema" method="POST"
-    public String guardarPoema(@RequestBody Poema poema, Model model){
-        
-        if(poema.getTitulo() == null ||  poema.getCuerpo() == null){
+    public String guardarPoema(@RequestBody String titulo,@RequestBody String cuerpo,@RequestBody String autorId, Model model){
+        Poema poema = new Poema();
+        poema.setCuerpo(cuerpo);
+        poema.setTitulo(titulo);
+        Usuario autor = new Usuario();
+        autor.setId(autorId);
+        poema.setAutor(autor);
+        if(poema.getTitulo() == null ||  poema.getCuerpo() == null || poema.getAutor().getId() == null){
             model.addAttribute("mensaje", "se pudrio todo");
             return "index";
         } else{
@@ -38,18 +44,12 @@ public class PoemaControlador {
     }
     
     @GetMapping("/editar")
-    public String editarAutor(Poema poema, Model model){
-        poema = poemaService.buscarPorId(poema);
-        model.addAttribute("poema",poema);
-        return "modificarPoema";
+    public String editarPoema(@RequestBody String titulo,@RequestBody String cuerpo,@RequestBody String id, Model model) throws Exception{
+        poemaService.modificarPoema(id, titulo, cuerpo);
+        model.addAttribute("msj","salio todo bien");
+        return "profile";
     }
     
-    @GetMapping("/editar/{id}")
-    public String editarAutor2(Poema poema,Model model){
-        poema = poemaService.buscarPorId(poema);
-        model.addAttribute("poema", poema);
-        return "editarPoema";
-    }
     
     @GetMapping("/eliminar/{id}")
     public String eliminarPoema(@PathVariable String id){
