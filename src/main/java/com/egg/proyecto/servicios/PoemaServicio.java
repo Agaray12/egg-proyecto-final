@@ -19,6 +19,12 @@ public class PoemaServicio {
     public List<Poema> listarPoemas(){
         return poemaRepositorio.findAll();
     }
+    
+    @Transactional(readOnly = true)
+    public List<Poema> listarPoemasPorUsuario(String idUsuario){
+        return poemaRepositorio.listarPoemasPorUsuario(idUsuario);
+    }
+    
     @Transactional
     public void guardar (Poema poema){
         poemaRepositorio.save(poema);

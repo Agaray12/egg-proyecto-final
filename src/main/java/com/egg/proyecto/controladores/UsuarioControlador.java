@@ -1,6 +1,8 @@
 package com.egg.proyecto.controladores;
 
+import com.egg.proyecto.entidades.Poema;
 import com.egg.proyecto.entidades.Usuario;
+import com.egg.proyecto.servicios.PoemaServicio;
 import com.egg.proyecto.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UsuarioControlador {
     @Autowired 
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    private PoemaServicio poemaServicio;
     
     @GetMapping("/registro")
     public String formulario(){
@@ -70,8 +75,9 @@ public class UsuarioControlador {
     @GetMapping("/{nombre}")
     public String profile(ModelMap model, @PathVariable String nombre){
         Usuario u2 = usuarioServicio.buscarUsuarioPorNombre(nombre);
-        
+        List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u2.getNombreUsuario());
         model.put("usuario", u2);
+        model.put("poemas", poemas);
         return "profile";
     }
 }
