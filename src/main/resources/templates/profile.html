@@ -23,18 +23,18 @@
             <div class="container">
               <h2 class="py-4 text-center">PUBLICACIONES</h2>
       
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
       
-                <div class="col">
+                <div class="col" th:each="poema : ${poemas}">
                   <div class="card shadow-sm">
                     <div class="card-body">
                       <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
                         content. This content is a little bit longer.</p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                          <a href="#" type="button" class="btn btn-sm btn-outline-secondary">View</a>
+                          <a th:href="@{/poema/__{usuario.nombreUsuario}__/__{poema.id}__}" type="button" class="btn btn-sm btn-outline-secondary">Ver más</a>
                           <sec:authorize access="isAuthenticated()">
-                          <a th:if="${#authentication.name == usuario.email}" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                          <a th:if="${#authentication.name == usuario.email}" type="button" class="btn btn-sm btn-outline-secondary">Editar</a>
                           </sec:authorize>
                         </div>
                         <small class="text-muted">9 mins</small>
