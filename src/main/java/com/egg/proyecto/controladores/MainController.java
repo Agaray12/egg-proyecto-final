@@ -33,10 +33,10 @@ public class MainController {
     }
     
     @GetMapping("/profile")
-    public String perfil(ModelMap modelo, HttpSession session){
+    public String perfil(Model model, HttpSession session){
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosession");
-            modelo.put("usuario", u);
+            model.addAttribute("usuario", u);
         }catch(Exception e){
         }
         return "profile";
