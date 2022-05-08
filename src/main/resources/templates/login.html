@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <hea<!-- These meta tags come first. -->
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +18,27 @@ and open the template in the editor.
         
         <link href="/egg-proyecto-final/src/main/resources/static/css/style.css" rel="stylesheet">
     </head>
+
+    <header class="miBarra">
+        <h1>Login</h1>
+        <nav class="navbar navbar-expand-lg ">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+      
+              <a class="nav-link letra" target="_blank" 
+              th:href="@{/index}">Inicio</a>
+      
+              <a class="nav-link letra" target="_blank" 
+              th:href="@{/nosotros}">Nosotros</a>
+      
+              <a class="nav-link letra" target="_blank" 
+              th:href="@{/profile}">Perfiles</a>
+      
+            </div>
+          </div>
+        </nav>
+      </header>
+      
     <body class="bodyN">
         <nav th:replace="/fragments/navbar :: nav"></nav>
         <div th:if="${exito}!=null" class="card miBarra mb-3" >
@@ -42,11 +63,11 @@ and open the template in the editor.
                 <tbody th:each="usuario : ${usuarios}"> 
                     <tr>
                         <th scope="rowgroup" th:text="${usuario.id}">***</th>
-                        <td th:text="${usuario.email}" >****@***</td>
+                        <td th:text="${usuario.email}" ><label>****@***</label></td>
                         <td th:text="${usuario.nombreUsuario}" >*****</td>
                         <td>
                             <div class="input-group">
-                                <div class="input-group-text">
+                                <div class="boton">
                                   <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input">
                                 </div>
                                
@@ -54,7 +75,7 @@ and open the template in the editor.
                         </td>
                         <td>
                             
-                            <a th:href= "@{/usuario/__${usuario.nombreUsuario}__}"><i class="fa fa-arrow-up">a</i></a> 
+                            <a th:href= "@{/usuario/__${usuario.nombreUsuario}__}"><button type="reset" class="btn boton letra">Borrar</button> <i class="fa fa-arrow-up"></i></a> 
                         </td>
                     </tr>
 
