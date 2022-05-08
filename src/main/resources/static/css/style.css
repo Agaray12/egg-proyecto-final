@@ -1,0 +1,33 @@
+
+.bodyN{
+    background-image:linear-gradient(rgb(118, 231, 118),rgb(113, 181, 226));
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    color: midnightblue;
+}
+
+.miBarra{
+  
+    background-image: linear-gradient(palegoldenrod, rgb(53, 231, 127));
+    color: cadetblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.letra{
+    color: cornflowerblue;
+    background-image: repeating-linear-gradient();
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.fondo{
+    border: none;
+    width: 600px; 
+    height: 400px; 
+    
+}
+.pie{
+    color: chocolate;
+}
+.boton{
+    background-color: rgb(173, 229, 229);
+}
+.stil{
+    
+}
