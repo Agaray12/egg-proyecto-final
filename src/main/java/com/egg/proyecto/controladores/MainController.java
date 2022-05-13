@@ -18,6 +18,10 @@ public class MainController {
     public String login(){
        return "login";
     }
+       @GetMapping("/registro")
+    public String registro(){
+       return "registro";
+    }
     
     @GetMapping("/profile")
     public String perfil(Model model, HttpSession session){
