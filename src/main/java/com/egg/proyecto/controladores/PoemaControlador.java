@@ -3,6 +3,7 @@ package com.egg.proyecto.controladores;
 import com.egg.proyecto.entidades.Poema;
 import com.egg.proyecto.entidades.Usuario;
 import com.egg.proyecto.servicios.PoemaServicio;
+import com.egg.proyecto.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ public class PoemaControlador {
 
     @Autowired
     private PoemaServicio poemaService;
+    @Autowired
+    private UsuarioServicio usuarioService;
     
     @GetMapping("/lista")
     public String poemas(Model model){
@@ -33,12 +36,11 @@ public class PoemaControlador {
     }
     
     @PostMapping("/guardarPoema") //action = "localhost8080/guardarPoema" method="POST"
-    public String guardarPoema(@RequestBody String titulo,@RequestBody String cuerpo,@RequestBody String autorId, Model model){
+    public String guardarPoema(@RequestBody String titulo,@RequestBody String cuerpo,@RequestBody String email, Model model){
         Poema poema = new Poema();
         poema.setCuerpo(cuerpo);
         poema.setTitulo(titulo);
-        Usuario autor = new Usuario();
-        autor.setId(autorId);
+        Usuario autor = usuarioService.buscarUsuarioPorEmail(email);
         poema.setAutor(autor);
         if(poema.getTitulo() == null ||  poema.getCuerpo() == null || poema.getAutor().getId() == null){
             model.addAttribute("mensaje", "se pudrio todo");

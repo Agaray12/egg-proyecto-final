@@ -31,6 +31,10 @@ public class MainController {
         }
         return "login";
     }
+       @GetMapping("/registro")
+    public String registro(){
+       return "registro";
+    }
     
     @GetMapping("/profile")
     public String perfil(Model model, HttpSession session){
