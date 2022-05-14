@@ -20,14 +20,61 @@
 <body>
   <div th:replace="fragments/head::head"></div>
   <nav th:replace="/fragments/navbar :: nav"></nav>
+
   <img class="fondo"
     src="https://estaticos.marie-claire.es/uploads/images/gallery/58a21e575bafe8fc8f8b4567/poemarios-para-san-valentin_0.jpg"
     height="400px" width="600px">
 
   <header>
 
- 
+    <div class="block-content">
+      <h2 class="title-content">&Uacute;ltimos poemas</h2>
+      <div class="box-tabs">
+        >>Esto es un ejemplo de lo que intento hacer <<
+        <ul class="tabs">
+          <li><a href="#">Nuevo</a></li>
+          
+        </ul>
+        <!--/tabs-->
 
+        <div class="panes">
+          <ul>
+            <li><time class="text-small"> </time>
+              <a rel="nofollow" class="indexleido" href="//www.poemas-del-alma.com/blog/mostrar-poema-660601">Cómo
+                quieres que te quiera</a>, por exar<span class="bg-box bg-box-gold bg-box-sm right"
+                title="Primer poema publicado por este usuario en Poemas del Alma"
+                style="width:26px;text-align:center;margin-left:5px;">1</span><span
+                class="bg-box bg-box-red bg-box-sm right" title="mayores de 18"
+                style="width:26px;margin-left:10px;text-align:center">+18</span>
+            </li>
+            <li><time class="text-small"> </time>
+              <a rel="nofollow" class="indexleido" href="//www.poemas-del-alma.com/blog/mostrar-poema-660600">Mi
+                pena</a>, por Jarledis Salgado
+            </li>
+            <li><time class="text-small"></time>
+              <a rel="nofollow" class="indexleido"
+                href="//www.poemas-del-alma.com/blog/mostrar-poema-660599">Señora</a>, por 💎Samuel Dixon💎
+            </li>
+          </ul>
+          <footer>
+            <a href="//www.poemas-del-alma.com/blog/directorio-de-poesia" class="btn btn-blue btn-md left">Directorio de
+              Poes&iacute;a</a>
+            <a href="https://www.poemas-del-alma.com/blog/buscar-poema" class="btn btn-blue btn-md left">Buscar
+              Poemas</a>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+
+    <ul>
+      <li>
+        <a th:href="${poema}"></a>
+      </li>
+
+
+      </tbody>
+    </ul>
   </header>
 
 

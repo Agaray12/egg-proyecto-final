@@ -1,59 +1,115 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="container m-5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-		<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-			<div class="card-body">
-				<h5 class="card-title">Exito</h5>
-				<p class="card-text" th:text="${exito}"></p>
+<head>
+	<!-- These meta tags come first. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Editar</title>
+
+	<!-- Include the CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/headers.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<section class="container m-5">
+		<article>
+			<div th:if="${exito}!=null" class="card text-white bg-success mb-3">
+				<div class="card-body">
+					<h5 class="card-title">Exito</h5>
+					<p class="card-text" th:text="${exito}"></p>
+				</div>
 			</div>
-		</div>
-		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-			<div class="card-body">
-				<h5 class="card-title">Error</h5>
-				<p class="card-text" th:text="${error}"></p>
+		</article>
+		<article>
+			<div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+				<div class="card-body">
+					<h5 class="card-title">Error</h5>
+					<p class="card-text" th:text="${error}"></p>
+				</div>
 			</div>
-		</div>
-                <!-- cuando trabajamos con pathvariable tenemos que enviar de esta manera el valor
+		</article>
+	</section>
+	<!-- cuando trabajamos con pathvariable tenemos que enviar de esta manera el valor
                 es una sintaxis de thymeleaf-->
-                
-		<form th:action="@{/usuario/editar/__${usuario.id}__}" method="POST">
-                    
-			<div class="form-group">
-				<label>Nombre</label> <input th:value="${usuario.nombre}" type="text" class="form-control" name="nombre" placeholder="Nombre de la mascota">
-			</div>
+	<div class="container m-4">
+		<div class="header">
+			<h1>Registro</h1>
+		</div>
+		<section class="container m-5">
+			<form action="@{/usuario/editar/}+${usuario.id}" method="post">
+				<div class="form-group">
+					<i class="fa fa-user"></i>
+					<input type="text" class="form-control" placeholder="Email" name="email" required>
+				</div><br>
+				<div class="form-group">
+					<i class="fa fa-lock"></i>
+					<input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario">
+				</div><br>
+				<div class="form-group">
+					<i class="fa fa-lock"></i>
+					<input type="password" class="form-control" placeholder="Clave" name="contrasenia1">
+				</div><br>
 
-			<div class="form-group">
-                            <label>Email</label> <input th:value="${usuario.email}" type="email" class="form-control" name="email">
-			</div>
+				<div class="form-group">
+					<i class="fa fa-lock"></i>
+					<input type="password" class="form-control" placeholder="Confirme su clave" name="contrasenia2">
+				</div><br>
+				<div class="py-1 text-center container">
+					<div class="row py-lg-1">
+						<div class=" col-lg-6 col-md-8 mx-auto">
+							<button type="submit" class="btn btn-success">Guardar</button>
+						</div>
+					</div>
+				</div>
 
-			<!-- div class="form-group">
+			</form>
+		</div>
+	</div>
+
+
+	<!-- <form th:action="@{/usuario/editar/} + ${usuario.id}" method="POST">
+
+		<div class="form-group">
+			<label>Nombre</label> <input th:value="${usuario.nombre}" type="text" class="form-control" name="nombre"
+				placeholder="Nombre de la mascota">
+		</div>
+
+		<div class="form-group">
+			<label>Email</label> <input th:value="${usuario.email}" type="email" class="form-control" name="email">
+		</div>
+
+		 div class="form-group">
 				<label>Foto</label> <input th:value="${usuario.foto}" type="text" class="form-control" name="foto" placeholder="URL de la foto">
 			</div>
 
 			<div class="form-group">
 				<label>Raza</label> <input th:value="${perro.raza}" type="text" class="form-control" name="raza" placeholder="Raza de la mascota">
-			</div-->
-
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
-
-		<section class="py-5 text-center container">
-			<div class="row py-lg-5">
-				<div class="col-lg-6 col-md-8 mx-auto">
-					<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
-				</div>
 			</div>
-		</section>
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+	</form> -->
+
+	<section class="py-1 text-center container">
+		<div class="row py-lg-1">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+			</div>
+		</div>
+	</section>
 
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
 
-    </body>
 </html>

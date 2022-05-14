@@ -33,6 +33,10 @@ public class MainController {
         }
         return "login";
     }
+       @GetMapping("/registro")
+    public String registro(){
+       return "registro";
+    }
     
 
     @GetMapping("/profile")

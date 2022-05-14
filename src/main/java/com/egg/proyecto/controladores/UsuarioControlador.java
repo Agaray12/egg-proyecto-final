@@ -39,7 +39,7 @@ public class UsuarioControlador {
             mod.put("Error", "Verifique los datos ingresados");
             return "registro";
         }
-        return "redirect:/login";
+        return "lista_perfiles";
     }
     
     @GetMapping("/editar/{id}")
@@ -49,7 +49,7 @@ public class UsuarioControlador {
             model.put("usuario", u);
         }catch(Exception e){
         }
-        return "editar_perfil";
+        return "editar_perfiles";
     }
     
     @PostMapping("/editar/{id}")
@@ -79,6 +79,12 @@ public class UsuarioControlador {
         List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u2.getNombreUsuario());
         model.put("usuario", u2);
         model.put("poemas", poemas);
+        return "profile";
+    }
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminarPoema(@PathVariable String id){
+        usuarioServicio.eliminarUsuario(id);
         return "profile";
     }
 }
