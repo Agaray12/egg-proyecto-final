@@ -18,29 +18,15 @@ and open the template in the editor.
         
         <link href="/egg-proyecto-final/src/main/resources/static/css/style.css" rel="stylesheet">
     </head>
-
-    <header class="miBarra">
-        <h1>Login</h1>
-        <nav class="navbar navbar-expand-lg ">
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-      
-              <a class="nav-link letra" target="_blank" 
-              th:href="@{/index}">Inicio</a>
-      
-              <a class="nav-link letra" target="_blank" 
-              th:href="@{/nosotros}">Nosotros</a>
-      
-              <a class="nav-link letra" target="_blank" 
-              th:href="@{/profile}">Perfiles</a>
-      
-            </div>
-          </div>
-        </nav>
+<body >
+    
+    <header>
+        <div th:replace="fragments/head::head"></div>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
       </header>
       
-    <body class="bodyN">
-        <nav th:replace="/fragments/navbar :: nav"></nav>
+    
+        
         <div th:if="${exito}!=null" class="card miBarra mb-3" >
             <div class="card-body">
                 <h5 class="card-title">Exito</h5>
@@ -48,40 +34,7 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div class="container m-5" >
-
-            <table class="table miBarra">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Nombre de Usuario</th>
-                        <th scope="col">Seleccion</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody th:each="usuario : ${usuarios}"> 
-                    <tr>
-                        <th scope="rowgroup" th:text="${usuario.id}">***</th>
-                        <td th:text="${usuario.email}" ><label>****@***</label></td>
-                        <td th:text="${usuario.nombreUsuario}" >*****</td>
-                        <td>
-                            <div class="input-group">
-                                <div class="boton">
-                                  <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input">
-                                </div>
-                               
-                              </div>
-                        </td>
-                        <td>
-                            
-                            <a th:href= "@{/usuario/__${usuario.nombreUsuario}__}"><button type="reset" class="btn boton letra">Borrar</button> <i class="fa fa-arrow-up"></i></a> 
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
+        
             <section class="py-5 text-center container">
                 <div class="row py-lg-5">
                     <div class="col-lg-6 col-md-8 mx-auto">

@@ -2,53 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<!-- These meta tags come first. -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- These meta tags come first. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>PoetApp</title>
+  <title>PoetApp</title>
 
-<!-- Include the CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- Include the CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<link href="/egg-proyecto-final/src/main/resources/static/css/style.css" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet">
+  <link href="/static/css/headers.css" rel="stylesheet">
 </head>
 
-<header class="miBarra">
-  <h1>PoetApp</h1>
-  <nav class="navbar navbar-expand-lg ">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-
-        <a class="nav-link letra" target="_blank" 
-        th:href="@{/usuario/registro}">Login</a>
-
-        <a class="nav-link letra" target="_blank" 
-        th:href="@{/nosotros}">Nosotros</a>
-
-        <a class="nav-link letra" target="_blank" 
-        th:href="@{/profile}">Perfiles</a>
-
-      </div>
-    </div>
-  </nav>
-</header>
-
-<body class="bodyN">
+<body>
+  <div th:replace="fragments/head::head"></div>
+  <nav th:replace="/fragments/navbar :: nav"></nav>
   <img class="fondo"
-    src="https://estaticos.marie-claire.es/uploads/images/gallery/58a21e575bafe8fc8f8b4567/poemarios-para-san-valentin_0.jpg">  
+    src="https://estaticos.marie-claire.es/uploads/images/gallery/58a21e575bafe8fc8f8b4567/poemarios-para-san-valentin_0.jpg"
+    height="400px" width="600px">
+
+  <header>
+
+ 
+
+  </header>
+
+
   <div>
-    <p>Este es un espacio donde poder encontrarse con la literatura y el romance detras de el.</p> 
+    <p>Este es un espacio donde poder encontrarse con la literatura y el romance detras de el.</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous">
-  </script>
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 </body>
 <footer>
-  
+
 </footer>
 
 </html>

@@ -42,8 +42,8 @@ public class UsuarioControlador {
         return "redirect:/login";
     }
     
-    @GetMapping("/editar")
-    public String editar(ModelMap model, HttpSession session){
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable String id, ModelMap model, HttpSession session){
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosession");
             model.put("usuario", u);
@@ -52,12 +52,13 @@ public class UsuarioControlador {
         return "editar_perfil";
     }
     
-    @PostMapping("/editar")
-    public String editarPerfil(@RequestParam String id, @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String contrasenia1, @RequestParam String contrasenia2, RedirectAttributes redirectAttributes, ModelMap model){
+    @PostMapping("/editar/{id}")
+    public String editarPerfil(@PathVariable String id, @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String contrasenia1, @RequestParam String contrasenia2, RedirectAttributes redirectAttributes, ModelMap model){
         try{
             Usuario u = usuarioServicio.modificarUsuario(id, email, contrasenia1, contrasenia2, nombreUsuario);
             model.put("exito", "Usuario modificado con exito");
             redirectAttributes.addFlashAttribute("exito", "Usuario modificado con exito");
+            return "lista_perfiles";
         }catch(Exception e){
             model.put("error", e.getMessage());
             redirectAttributes.addFlashAttribute("error", e.getMessage());
