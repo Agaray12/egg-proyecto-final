@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>aca se va a registrar el usuario</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="utf-8">
+     <div th:replace="fragments/head::head"></div>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/stylelogin.css">
+  </head>
+  <body>
+     <div th:replace="fragments/navbar::nav"></div>
+    <div class="center">
+      <h1>Iniciar sesion</h1>
+      <form th:action="@{/logincheck}" method="post">
+        <div class="txt_field">
+          <input name="email" type="text" required>
+          <span></span>
+          <label>Mail</label>
+        </div>
+        <div class="txt_field">
+          <input name="contrasenia" type="password" required>
+          <span></span>
+          <label>Clave</label>
+        </div>
+        <div class="pass">Olvidaste tu clave?</div>
+        <input type="submit" value="Ingresar">
+        <div class="signup_link">
+          No tenes cuenta? <a href="/registro">Registrate</a>
+        </div>
+      </form>
+    </div>
+
+  </body>
 </html>

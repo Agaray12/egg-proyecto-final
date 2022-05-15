@@ -1,37 +1,40 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-	<title>login</title>
-	<link href="/css/styleregistro.css" rel="stylesheet">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="utf-8">
+     <div th:replace="fragments/head::head"></div>
+    <title>Registro</title>
+    <link rel="stylesheet" href="/css/stylelogin.css">
+  </head>
+  <body>
+     <div th:replace="fragments/navbar::nav"></div>
+    <div class="center">
+      <h1>Registro</h1>
+      <form style="padding-bottom:10%" action="/usuario/registro" method="post">
+        <div class="txt_field">
+          <input name="email" type="text" required>
+          <span></span>
+          <label>Mail</label>
+        </div>
+          <div class="txt_field">
+          <input name="nombreUsuario" type="text" required>
+          <span></span>
+          <label>Nombre de usuario</label>
+        </div>
+        <div class="txt_field">
+          <input name="contrasenia1" type="password" required>
+          <span></span>
+          <label>Clave</label>
+        </div>
+          <div class="txt_field">
+          <input name="contrasenia2" type="password" required>
+          <span></span>
+          <label>Confirme su clave</label>
+        </div>
+        <input type="submit" value="Registrarse">
+      </form>
+    </div>
 
-</head>
-<body>
- <div class="container">
- 	<div class="header">
- 		<h1>Registro</h1>
- 	</div>
- 	<div class="main">
- 		<form action="/usuario/registro" method="post">
- 			<span>
- 				<i class="fa fa-user"></i>
- 				<input type="text" placeholder="Email" name="email" required>
- 			</span><br>
- 			<span>
- 				<i class="fa fa-lock"></i>
- 				<input type="text" placeholder="Nombre de usuario" name="nombreUsuario">
- 			</span><br>
-			 <span>
-				<i class="fa fa-lock"></i>
-				<input type="password" placeholder="Clave" name="contrasenia1">
-			</span><br>
-                        <span>
-				<i class="fa fa-lock"></i>
-				<input type="password" placeholder="Confirme su clave" name="contrasenia2">
-			</span><br>
- 				<button type="submit">Registrarse</button>
-
- 		</form>
- 	</div>
- </div>
-</body>
+  </body>
 </html>
