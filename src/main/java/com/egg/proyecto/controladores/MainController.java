@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,9 +42,15 @@ public class MainController {
         }
         return "login";
     }
+       @GetMapping("/registro")
+    public String registro(){
+       return "registro";
+    }
     
+
     @GetMapping("/profile")
     public String perfil(Model model, HttpSession session){
+
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosession");
             List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u.getId());
@@ -61,4 +68,7 @@ public class MainController {
     public String nosotros(){
         return "nosotros";
     }
+    
+
+    
 }

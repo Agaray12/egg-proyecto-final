@@ -49,6 +49,7 @@ public class PoemaControlador {
         Date fecha = new Date();
         System.out.println(fecha);
         if(autor.getId() == null){
+
             model.addAttribute("mensaje", "se pudrio todo");
             return "index";
         } else{

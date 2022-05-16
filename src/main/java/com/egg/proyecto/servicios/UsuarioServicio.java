@@ -55,7 +55,7 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }
     
-    public void eliminarUsuario(String id, String email, String contrasenia, String alias){
+    public void eliminarUsuario(String id){
         usuarioRepositorio.deleteById(id);
     }
     

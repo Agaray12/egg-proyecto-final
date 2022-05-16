@@ -1,11 +1,39 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="utf-8">
+     <div th:replace="fragments/head::head"></div>
+    <title>Registro</title>
+    <link rel="stylesheet" href="/css/stylelogin.css">
+  </head>
+  <body>
+     <div th:replace="fragments/navbar::nav"></div>
+    <div class="center">
+      <h1>Registro</h1>
+      <form style="padding-bottom:10%" action="/usuario/registro" method="post">
+        <div class="txt_field">
+          <input name="email" type="text" required>
+          <span></span>
+          <label>Mail</label>
+        </div>
+          <div class="txt_field">
+          <input name="nombreUsuario" type="text" required>
+          <span></span>
+          <label>Nombre de usuario</label>
+        </div>
+        <div class="txt_field">
+          <input name="contrasenia1" type="password" required>
+          <span></span>
+          <label>Clave</label>
+        </div>
+          <div class="txt_field">
+          <input name="contrasenia2" type="password" required>
+          <span></span>
+          <label>Confirme su clave</label>
+        </div>
+        <input type="submit" value="Registrarse">
+      </form>
+    </div>
+
+  </body>
