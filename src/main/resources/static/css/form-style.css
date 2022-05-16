@@ -1,0 +1,153 @@
+body{
+    background-color: #e7e7e7;
+    min-height: 100vh;
+  }
+  
+  .espacio {
+    background-color: #ffffff;
+    padding: 2rem 1rem;
+    margin: 5px 15%;
+    border-radius: 15px;
+  }
+  
+  .cabecera {
+    margin-bottom: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  .cabecera h2 {
+    font-size: 28px;
+    color: #060160;
+  }
+  
+  .head-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto 2rem;
+  }
+  
+  .head-form .texto {
+    padding-right: 32%;
+  }
+  
+  .head-form a{
+    padding-bottom: 1rem;
+  }
+  
+  .desestilizar{
+    all: unset;
+  }
+  
+  .boton-crear{
+    background: linear-gradient(rgb(255, 234, 0), rgb(188, 176, 48));
+    padding: 1rem 5rem;
+    text-decoration: none;
+    margin: auto;
+    margin-bottom: 6px;
+    display:flex;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px 0 rgb(185 185 185 / 50%);
+    font-weight: 600;
+  
+  }
+
+  .boton-crear p {
+    margin-bottom: auto;
+  }
+  
+  .texto button{
+    color: rgb(3, 16, 46);
+  }
+  
+  .boton-crear:hover{
+    color: rgba(3, 16, 46, 1);
+    font-size: 17px;
+    box-shadow: 0 4px 16px rgb(172, 170, 49);
+    transition: all 0.05s ease;
+  }
+  
+  .cuerpo{
+    padding: 0 2rem;
+  }
+  
+  textarea{
+    width: 100%;
+    resize: none;
+    background-color: aliceblue;
+    border: none;
+    color: #484848;
+    outline: none;
+  }
+  
+  .entrada-titulo{
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #484848;
+  }
+  
+  .entrada-titulo textarea {
+    font-weight: 500;
+  }
+  
+  .entrada-poema {
+    padding: 20px;
+    background-color: aliceblue;
+    border-radius: 20px;
+  }
+  
+  
+  #titulo-input {
+    max-height: 2em;
+    font-size: 38px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+  }
+  
+  #poema-input {
+    min-height: 6em;
+    font-size: 28px;
+    line-height: 120%;
+  }
+  
+  @media (max-width: 1200px) {
+    .head-form .texto {
+      text-align: center;
+      padding-right: 30%;
+    }
+
+    #titulo-input {
+      font-size: 30px;
+    }
+
+    #poema-input {
+      font-size: 20px;
+    }
+  }
+
+@media (max-width: 992px) {
+  .head-form .texto {
+    text-align: center;
+    padding-right: 25%;
+  }
+}
+  
+@media (max-width: 768px){
+  .head-form .texto {
+    text-align: center;
+    padding-left: 4em;
+  }
+
+  #titulo-input {
+    font-size: 22px;
+    max-height: 3em;
+  }
+
+  #poema-input {
+    font-size: 18px;
+  }
+
+}
