@@ -53,8 +53,7 @@ body{
     font-weight: 600;
   
   }
-  
-  
+
   .boton-crear p {
     margin-bottom: auto;
   }
@@ -114,3 +113,41 @@ body{
     line-height: 120%;
   }
   
+  @media (max-width: 1200px) {
+    .head-form .texto {
+      text-align: center;
+      padding-right: 30%;
+    }
+
+    #titulo-input {
+      font-size: 30px;
+    }
+
+    #poema-input {
+      font-size: 20px;
+    }
+  }
+
+@media (max-width: 992px) {
+  .head-form .texto {
+    text-align: center;
+    padding-right: 25%;
+  }
+}
+  
+@media (max-width: 768px){
+  .head-form .texto {
+    text-align: center;
+    padding-left: 4em;
+  }
+
+  #titulo-input {
+    font-size: 22px;
+    max-height: 3em;
+  }
+
+  #poema-input {
+    font-size: 18px;
+  }
+
+}
