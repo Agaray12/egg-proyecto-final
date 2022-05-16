@@ -1,7 +1,13 @@
 package com.egg.proyecto.controladores;
 
+import com.egg.proyecto.entidades.Poema;
 import com.egg.proyecto.entidades.Usuario;
+import com.egg.proyecto.servicios.PoemaServicio;
+import com.egg.proyecto.utilidades.Comparadores;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class MainController {
+    
+    @Autowired
+    private PoemaServicio poemaServicio;
     
     @GetMapping("/")
     public String index(@RequestParam(required = false) String login, ModelMap model) {
@@ -44,8 +53,13 @@ public class MainController {
 
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosession");
+            List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u.getId());
+            Collections.sort(poemas, Comparadores.ordernarPorFecha);
             model.addAttribute("usuario", u);
+            model.addAttribute("poemas", poemas);
         }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "index";
         }
         return "profile";
     }

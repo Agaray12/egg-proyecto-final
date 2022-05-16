@@ -4,6 +4,8 @@ import com.egg.proyecto.entidades.Poema;
 import com.egg.proyecto.entidades.Usuario;
 import com.egg.proyecto.servicios.PoemaServicio;
 import com.egg.proyecto.servicios.UsuarioServicio;
+import com.egg.proyecto.utilidades.Comparadores;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +78,8 @@ public class UsuarioControlador {
     @GetMapping("/{nombre}")
     public String profile(ModelMap model, @PathVariable String nombre){
         Usuario u2 = usuarioServicio.buscarUsuarioPorNombre(nombre);
-        List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u2.getNombreUsuario());
+        List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u2.getId());
+        Collections.sort(poemas, Comparadores.ordernarPorFecha);
         model.put("usuario", u2);
         model.put("poemas", poemas);
         return "profile";

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -26,7 +27,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private Role role;
     
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Poema> poemas;
 
     public Usuario() {

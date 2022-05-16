@@ -40,67 +40,30 @@
 
         <div class="album py-5 bg-secondary">
             <div class="container">
-                <h2 class="py-4 text-center">PUBLICACIONES</h2>
-
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
-
-                    <div class="col" th:each="poema : ${poemas}">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                                    content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-
-                                        <a th:href="@{/poema/__{usuario.nombreUsuario}__/__{poema.id}__}" type="button" class="btn btn-sm btn-outline-secondary">Ver más</a>
-                                        <sec:authorize access="isAuthenticated()">
-                                            <a th:if="${#authentication.name == usuario.email}" type="button" class="btn btn-sm btn-outline-secondary">Editar</a>
-                                        </sec:authorize>
-
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
+              <h2 class="py-4 text-center">PUBLICACIONES</h2>
+      
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+      
+                <div class="col" th:each="poema : ${poemas}">
+                  <div class="card shadow-sm"><h2 style="display: flex; justify-content: center; margin: 0.5em auto;" th:text="${poema.titulo}">Titulo</h2></div>
+                  <div class="card shadow-sm">
+                    <div class="card-body">
+                      <p style="white-space: pre-line" th:text="${poema.cuerpo}" class="card-text"></p>  
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a th:href="@{/poema/__${usuario.nombreUsuario}__/__${poema.id}__}" type="button" class="btn btn-sm btn-outline-secondary">Ver más</a>
+                          <sec:authorize access="isAuthenticated()">
+                          <a th:if="${#authentication.name == usuario.email}" type="button" class="btn btn-sm btn-outline-secondary">Editar</a>
+                          </sec:authorize>
                         </div>
+                        <small th:text="${poema.fecha}" class="text-muted fecha"></small>
+                      </div>
                     </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                                    content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat ipsam eius, quas,
-                                    porro nulla est sed officia dolores cum, eligendi atque modi! Itaque at omnis qui atque laudantium
-                                    quasi nam blanditiis quam, ratione, officia commodi maiores sunt illum, provident facere rerum quidem
-                                    culpa? Beatae est asperiores sapiente labore velit pariatur?</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+      
+              </div>
+
             </div>
         </div>
 
