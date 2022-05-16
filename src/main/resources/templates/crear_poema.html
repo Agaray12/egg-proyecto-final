@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
-        <div th:replace="fragments/head::head"></div>
-    </head>
-    <body>
-        <div th:replace="fragments/navbar::nav"></div>
-        
-    </body>
+
+<head>
+    <div th:replace="fragments/head::head"></div>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div th:replace="fragments/navbar::nav"></div>
+
+    <main class="container" style="margin-top: 5rem; padding-top: 2rem; border-radius: 25px">
+        <div class="espacio cabecera">
+            <div class="head-form">
+                <a title="Volver" th:href="@{/}" class="boton-cancelar"><svg width="22" height="22">
+                    <use xlink:href="#left-arrow" />
+                </svg></a>
+                <div class="texto">
+                    <h2>Creando poema...</h2>
+                </div>
+               
+            </div>
+        </div>
+        <div class="espacio">
+            <form th:action="@{/poema/guardarPoema}" method="POST">
+                <div class="cuerpo">
+                    <input hidden th:value="${#authentication.name}" name="autorEmail">
+                    <div class="entrada-titulo">
+                        <textarea name="titulo" id="titulo-input" placeholder="Ingrese aquí el titulo de su poema"></textarea>
+                    </div>
+                    <div class="entrada-poema">
+                        <textarea name="cuerpo" id="poema-input" placeholder="Ingrese aquí el poema"></textarea>
+                    </div>
+                    
+                </div>
+        </div>
+        <div style="padding: 0.5rem 1rem; margin: 0 15%; border-radius: 15px">
+            <div class="texto">
+                <button type="submit" class="desestilizar boton-crear">
+                    <p>CREAR</p>
+                </button>
+            </div>
+            </form>
+        </div>
+    </main>
+</body>
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+      <script src="/js/poema.js"></script>
+
 </html>
