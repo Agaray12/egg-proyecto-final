@@ -1,6 +1,8 @@
 package com.egg.proyecto.controladores;
 
+import com.egg.proyecto.entidades.Poema;
 import com.egg.proyecto.entidades.Usuario;
+import com.egg.proyecto.servicios.PoemaServicio;
 import com.egg.proyecto.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,9 @@ public class UsuarioControlador {
     @Autowired 
     private UsuarioServicio usuarioServicio;
     
+    @Autowired
+    private PoemaServicio poemaServicio;
+    
     @GetMapping("/registro")
     public String formulario(){
         return "registro";
@@ -34,25 +39,26 @@ public class UsuarioControlador {
             mod.put("Error", "Verifique los datos ingresados");
             return "registro";
         }
-        return "redirect:/login";
+        return "lista_perfiles";
     }
     
-    @GetMapping("/editar")
-    public String editar(ModelMap model, HttpSession session){
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable String id, ModelMap model, HttpSession session){
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosession");
             model.put("usuario", u);
         }catch(Exception e){
         }
-        return "editar_perfil";
+        return "editar_perfiles";
     }
     
-    @PostMapping("/editar")
-    public String editarPerfil(@RequestParam String id, @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String contrasenia1, @RequestParam String contrasenia2, RedirectAttributes redirectAttributes, ModelMap model){
+    @PostMapping("/editar/{id}")
+    public String editarPerfil(@PathVariable String id, @RequestParam String email, @RequestParam String nombreUsuario, @RequestParam String contrasenia1, @RequestParam String contrasenia2, RedirectAttributes redirectAttributes, ModelMap model){
         try{
             Usuario u = usuarioServicio.modificarUsuario(id, email, contrasenia1, contrasenia2, nombreUsuario);
             model.put("exito", "Usuario modificado con exito");
             redirectAttributes.addFlashAttribute("exito", "Usuario modificado con exito");
+            return "lista_perfiles";
         }catch(Exception e){
             model.put("error", e.getMessage());
             redirectAttributes.addFlashAttribute("error", e.getMessage());
@@ -70,8 +76,15 @@ public class UsuarioControlador {
     @GetMapping("/{nombre}")
     public String profile(ModelMap model, @PathVariable String nombre){
         Usuario u2 = usuarioServicio.buscarUsuarioPorNombre(nombre);
-        
+        List<Poema> poemas = poemaServicio.listarPoemasPorUsuario(u2.getNombreUsuario());
         model.put("usuario", u2);
+        model.put("poemas", poemas);
+        return "profile";
+    }
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminarPoema(@PathVariable String id){
+        usuarioServicio.eliminarUsuario(id);
         return "profile";
     }
 }

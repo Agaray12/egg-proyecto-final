@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/poema")
 public class PoemaControlador {
 
     @Autowired
@@ -21,11 +23,16 @@ public class PoemaControlador {
     @Autowired
     private UsuarioServicio usuarioService;
     
-    @GetMapping("")
+    @GetMapping("/lista")
     public String poemas(Model model){
         List<Poema> poemas = poemaService.listarPoemas();
         model.addAttribute("poemas", poemas);
         return "index";
+    }
+    
+    @GetMapping("/crear")
+    public String guardarPoema(){
+        return "crear_poema";
     }
     
     @PostMapping("/guardarPoema") //action = "localhost8080/guardarPoema" method="POST"
