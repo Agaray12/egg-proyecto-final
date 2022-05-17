@@ -1,40 +1,63 @@
 
-.bodyN{
-    /* background-image:linear-gradient(rgb(118, 231, 118),rgb(113, 181, 226)); */
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-    color: midnightblue;
+
+
+.container {
+    max-width: 1100px;
 }
 
-.miBarra{
-  
-    /* background-image: linear-gradient(palegoldenrod, rgb(53, 231, 127)); */
-    color: cadetblue;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.title-color{
+    color: #f9f9f9;
 }
-.letra{
-    color: cornflowerblue;
-    /* background-image: repeating-linear-gradient(); */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+.row{
+    margin: 0;
 }
-.fondo{
-    border: none;
-     
-    
+
+#row-profile img{
+    border-radius: 50%;
 }
-.pie{
-    color: chocolate;
+
+
+
+#row-nosotros img{
+    border-radius: 80%;
+    width: 400px;
 }
-.boton{
-    background-color: none;
-    font-family: sans-serif;
+
+
+
+#row-nosotros p{
+    font-size: 14px;
 }
-.stil{
- /* background-color: aqua; */
- border-bottom-left-radius: 2px;
- font-style: italic;
+
+
+
+/* #row-datos{
+    background-color: #5080E5;
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
 }
-.selec{
-   /* background-image: linear-gradient(palegoldenrod, rgb(53, 231, 127)); */
-    color: cadetblue;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+.circulo{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #B3FBFF;
+}*/
+
+.form-control{
+    border-radius: 50px;
+} 
+
+/* footer{
+    background-color: black;
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
 }
+
+footer a{
+    text-decoration: none;
+    color: white;
+} */
+
+
+
