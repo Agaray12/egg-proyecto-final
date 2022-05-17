@@ -88,6 +88,6 @@ public class UsuarioControlador {
     @GetMapping("/eliminar/{id}")
     public String eliminarPoema(@PathVariable String id){
         usuarioServicio.eliminarUsuario(id);
-        return "profile";
+        return "lista_perfiles";
     }
 }

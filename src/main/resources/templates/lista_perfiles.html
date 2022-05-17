@@ -46,11 +46,8 @@
                                     class="fa fa-edit"></i></a>
                         </td>
                         <td>
-                            <form th:action="@{/usuario/eliminar}" method="post">
-                                <input type="hidden" name="id" th:value="${usuario.id}" />
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
-                                </button>
-                            </form>
+                            <a class="btn btn-danger" th:href="@{/usuario/eliminar/} + ${usuario.id}"><i
+                                class="fa fa-delete"></i></a>
                         </td>
                     </tr>
 
